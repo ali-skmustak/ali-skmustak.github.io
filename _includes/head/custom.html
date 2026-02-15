@@ -41,14 +41,24 @@ body::before {
   z-index: 1;
 }
 
-/* --- Push footer to bottom --- */
+/* --- Push footer to bottom of viewport --- */
+html {
+  height: 100% !important;
+}
+
+body {
+  min-height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
 #main {
-  min-height: 100vh !important;
+  flex: 1 !important;
 }
 
 .page__footer {
   background: rgba(0, 0, 0, 0.7) !important;
-  margin-top: 0 !important;
+  margin-top: auto !important;
   padding: 1em 0 !important;
 }
 
@@ -111,8 +121,7 @@ h3 {
 }
 
 /* Offset body content so it doesn't hide behind the fixed navbar */
-.initial-content,
-.search-content {
+body {
   padding-top: 60px !important;
 }
 
