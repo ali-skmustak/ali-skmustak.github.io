@@ -1,20 +1,554 @@
-{% include base_path %}
+<!-- Google Fonts: Cormorant Garamond (elegant academic serif) + Nunito Sans (clean modern body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- start custom head snippets -->
+<style>
+/* ============================================================
+   NUCLEAR ASTROPHYSICS THEME — Sk Mustak Ali
+   A deep cosmic aesthetic inspired by stellar interiors,
+   nuclear reactions, and the night sky.
+   ============================================================ */
 
-<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
-<link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png"/>
-<link rel="icon" type="image/svg+xml" href="{{ base_path }}/images/favicon.svg"/>
-<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-32x32.png" sizes="32x32"/>
-<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-192x192.png" sizes="192x192"/>
-<link rel="manifest" href="{{ base_path }}/images/manifest.json"/>
-<link rel="icon" href="/images/favicon.ico"/>
-<meta name="theme-color" content="#ffffff"/>
-<link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css"/>
+/* --- CSS Variables --- */
+:root {
+  --bg-deep:        #060a14;
+  --bg-surface:     #0c1222;
+  --bg-card:        #111a2e;
+  --bg-card-hover:  #162040;
+  --text-primary:   #e2e4ea;
+  --text-secondary: #9ca3b4;
+  --text-muted:     #6b7280;
+  --accent-gold:    #d4a843;
+  --accent-gold-soft:#d4a84333;
+  --accent-blue:    #5ba0f5;
+  --accent-blue-dim:#5ba0f522;
+  --accent-red:     #e06050;
+  --accent-teal:    #38bdb8;
+  --border-color:   #1e2a45;
+  --sidebar-bg:     #0a0f1e;
+  --font-heading:   'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body:      'Nunito Sans', 'Segoe UI', Tahoma, sans-serif;
+  --font-mono:      'Fira Code', 'Consolas', monospace;
+}
 
+/* --- Global Background & Body --- */
+html {
+  background: var(--bg-deep) !important;
+}
 
-<!-- Support for MatJax -->
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+body {
+  background: var(--bg-deep) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-body) !important;
+  font-weight: 400;
+  line-height: 1.72;
+  font-size: 16px;
+  overflow-x: hidden;
+}
 
-<!-- end custom head snippets -->
+/* --- Animated Starfield (CSS only, 3 layers) --- */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Layer 1: Tiny distant stars */
+body::before {
+  background: transparent;
+  box-shadow:
+    1309px 228px 0 0.4px rgba(255,255,255,0.7),
+    51px 1518px 0 0.4px rgba(255,255,255,0.5),
+    563px 501px 0 0.3px rgba(255,255,255,0.6),
+    457px 285px 0 0.4px rgba(255,255,255,0.8),
+    1508px 209px 0 0.3px rgba(255,255,255,0.5),
+    1385px 1516px 0 0.4px rgba(255,255,255,0.6),
+    1827px 1116px 0 0.3px rgba(255,255,255,0.7),
+    178px 1209px 0 0.4px rgba(255,255,255,0.5),
+    864px 65px 0 0.3px rgba(255,255,255,0.6),
+    61px 191px 0 0.4px rgba(255,255,255,0.8),
+    447px 476px 0 0.3px rgba(255,255,255,0.5),
+    1034px 1232px 0 0.4px rgba(255,255,255,0.7),
+    54px 1149px 0 0.3px rgba(255,255,255,0.6),
+    407px 1466px 0 0.4px rgba(255,255,255,0.5),
+    1330px 1436px 0 0.3px rgba(255,255,255,0.7),
+    1116px 859px 0 0.4px rgba(255,255,255,0.6),
+    451px 919px 0 0.3px rgba(255,255,255,0.5),
+    1206px 569px 0 0.4px rgba(255,255,255,0.8),
+    1657px 1780px 0 0.3px rgba(255,255,255,0.6),
+    13px 1554px 0 0.4px rgba(255,255,255,0.7),
+    1650px 326px 0 0.3px rgba(255,255,255,0.5),
+    1429px 865px 0 0.4px rgba(255,255,255,0.6),
+    696px 569px 0 0.3px rgba(255,255,255,0.7),
+    318px 440px 0 0.4px rgba(255,255,255,0.5),
+    1960px 1563px 0 0.3px rgba(255,255,255,0.6),
+    689px 209px 0 0.4px rgba(255,255,255,0.8),
+    189px 778px 0 0.3px rgba(255,255,255,0.7),
+    198px 735px 0 0.4px rgba(255,255,255,0.5),
+    1735px 704px 0 0.3px rgba(255,255,255,0.6),
+    1236px 541px 0 0.4px rgba(255,255,255,0.7),
+    1652px 88px 0 0.3px rgba(255,255,255,0.5),
+    1494px 940px 0 0.4px rgba(255,255,255,0.6),
+    1098px 255px 0 0.3px rgba(255,255,255,0.8),
+    1992px 1888px 0 0.4px rgba(255,255,255,0.5),
+    775px 161px 0 0.3px rgba(255,255,255,0.7),
+    1130px 600px 0 0.4px rgba(255,255,255,0.6),
+    1698px 1287px 0 0.3px rgba(255,255,255,0.5),
+    1266px 1813px 0 0.4px rgba(255,255,255,0.7),
+    1764px 740px 0 0.3px rgba(255,255,255,0.6),
+    1182px 393px 0 0.4px rgba(255,255,255,0.5),
+    1442px 142px 0 0.3px rgba(255,255,255,0.8),
+    93px 1354px 0 0.4px rgba(255,255,255,0.6),
+    466px 1583px 0 0.3px rgba(255,255,255,0.7),
+    592px 163px 0 0.4px rgba(255,255,255,0.5),
+    1751px 476px 0 0.3px rgba(255,255,255,0.6),
+    946px 777px 0 0.4px rgba(255,255,255,0.7),
+    552px 1895px 0 0.3px rgba(255,255,255,0.5),
+    727px 429px 0 0.4px rgba(255,255,255,0.6),
+    928px 1301px 0 0.3px rgba(255,255,255,0.8);
+  animation: starDrift 120s linear infinite;
+}
+
+/* Layer 2: Medium + bright stars (after pseudo) */
+body::after {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(90, 140, 255, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(212, 168, 67, 0.03) 0%, transparent 40%),
+    radial-gradient(ellipse at 60% 80%, rgba(224, 96, 80, 0.02) 0%, transparent 45%);
+  box-shadow:
+    437px 1770px 0 0.7px rgba(255,255,255,0.8),
+    821px 1848px 0 0.6px rgba(200,220,255,0.7),
+    120px 337px 0 0.7px rgba(255,255,255,0.9),
+    776px 4px 0 0.6px rgba(255,240,200,0.8),
+    799px 543px 0 0.7px rgba(255,255,255,0.7),
+    1897px 1605px 0 0.6px rgba(200,220,255,0.8),
+    1607px 931px 0 0.7px rgba(255,255,255,0.9),
+    584px 866px 0 0.6px rgba(255,240,200,0.7),
+    1426px 1960px 0 0.7px rgba(255,255,255,0.8),
+    1496px 1604px 0 0.6px rgba(200,220,255,0.9),
+    1138px 1355px 0 0.7px rgba(255,255,255,0.7),
+    1471px 996px 0 0.6px rgba(255,240,200,0.8),
+    317px 388px 0 0.7px rgba(255,255,255,0.9),
+    607px 445px 0 0.6px rgba(200,220,255,0.7),
+    1983px 119px 0 0.7px rgba(255,255,255,0.8),
+    1186px 1506px 0 0.6px rgba(255,240,200,0.9),
+    1110px 124px 0 0.7px rgba(255,255,255,0.7),
+    1531px 642px 0 0.6px rgba(200,220,255,0.8),
+    867px 1698px 0 1px rgba(255,248,220,1),
+    566px 90px 0 1px rgba(200,210,255,0.9),
+    7px 683px 0 0.9px rgba(255,255,255,1),
+    1579px 267px 0 1px rgba(255,240,200,0.9),
+    1304px 536px 0 0.9px rgba(200,220,255,1),
+    330px 1518px 0 1px rgba(255,248,220,0.9),
+    904px 1129px 0 0.9px rgba(255,255,255,1),
+    1445px 875px 0 1px rgba(200,210,255,0.9),
+    1148px 19px 0 0.9px rgba(255,240,200,1),
+    229px 154px 0 1px rgba(255,255,255,0.9),
+    1935px 1808px 0 0.9px rgba(200,220,255,1),
+    756px 1192px 0 1px rgba(255,248,220,0.9);
+  animation: starDrift 180s linear infinite reverse;
+}
+
+@keyframes starDrift {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-40px); }
+}
+
+/* Twinkling animation on select stars */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.7; }
+  50%      { opacity: 1; }
+}
+
+/* --- Layout wrappers need to be above the starfield --- */
+#main,
+.masthead,
+.page__footer,
+.sidebar,
+.initial-content,
+.search-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6,
+.page__title,
+.archive__item-title,
+.sidebar .author__name {
+  font-family: var(--font-heading) !important;
+  color: var(--text-primary) !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+h1, .page__title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, #f0d890 50%, var(--accent-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: 1.6em !important;
+  color: var(--accent-blue) !important;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.35em;
+  margin-top: 1.8em;
+}
+
+h3 {
+  font-size: 1.25em !important;
+  color: var(--accent-gold) !important;
+}
+
+p, li, td, th, dd, dt {
+  font-family: var(--font-body) !important;
+  color: var(--text-primary) !important;
+}
+
+a {
+  color: var(--accent-blue) !important;
+  text-decoration: none;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+a:hover {
+  color: var(--accent-gold) !important;
+  text-shadow: 0 0 8px rgba(212, 168, 67, 0.3);
+}
+
+code, pre, .highlight {
+  font-family: var(--font-mono) !important;
+  background: var(--bg-card) !important;
+  color: var(--accent-teal) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+strong, b {
+  color: var(--text-primary) !important;
+  font-weight: 700;
+}
+
+em, i {
+  color: var(--text-secondary) !important;
+}
+
+/* --- Navigation Bar --- */
+.masthead {
+  background: rgba(6, 10, 20, 0.92) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.masthead .masthead__inner-wrap {
+  background: transparent !important;
+}
+
+.greedy-nav {
+  background: transparent !important;
+}
+
+.greedy-nav a {
+  color: var(--text-secondary) !important;
+  font-family: var(--font-body) !important;
+  font-weight: 600;
+  font-size: 0.88em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.greedy-nav a:hover {
+  color: var(--accent-gold) !important;
+  text-shadow: 0 0 12px rgba(212, 168, 67, 0.25);
+}
+
+.greedy-nav .visible-links a.masthead__menu-item--lg {
+  font-family: var(--font-heading) !important;
+  font-size: 1.15em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  background: linear-gradient(135deg, var(--accent-gold), #f0d890);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Sidebar / Author Profile --- */
+.sidebar {
+  background: linear-gradient(180deg, var(--sidebar-bg) 0%, rgba(10, 15, 30, 0.95) 100%) !important;
+  border-right: 1px solid var(--border-color);
+}
+
+.author__avatar img {
+  border-radius: 50% !important;
+  border: 3px solid var(--accent-gold) !important;
+  box-shadow: 0 0 20px rgba(212, 168, 67, 0.15), 0 0 40px rgba(91, 160, 245, 0.08);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.author__avatar img:hover {
+  box-shadow: 0 0 25px rgba(212, 168, 67, 0.3), 0 0 50px rgba(91, 160, 245, 0.15);
+  transform: scale(1.03);
+}
+
+.author__name {
+  font-family: var(--font-heading) !important;
+  font-size: 1.35em !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+}
+
+.author__bio {
+  font-family: var(--font-body) !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.9em;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.author__urls-wrapper a {
+  color: var(--text-secondary) !important;
+  font-size: 0.88em;
+  transition: color 0.25s ease;
+}
+
+.author__urls-wrapper a:hover {
+  color: var(--accent-gold) !important;
+}
+
+.author__urls.social-icons .svg-inline--fa,
+.author__urls.social-icons i {
+  color: var(--accent-blue) !important;
+}
+
+.sidebar p, .sidebar li, .sidebar a {
+  color: var(--text-secondary) !important;
+}
+
+/* --- Main Content Area --- */
+.page__content {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+.page__content p {
+  margin-bottom: 1.2em;
+}
+
+/* --- Cards and list items --- */
+.archive__item {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.2em;
+  margin-bottom: 1em;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.archive__item:hover {
+  background: var(--bg-card-hover) !important;
+  border-color: var(--accent-gold-soft);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 30px rgba(212, 168, 67, 0.05);
+}
+
+.archive__item-title a {
+  font-family: var(--font-heading) !important;
+  color: var(--accent-blue) !important;
+}
+
+.archive__item-title a:hover {
+  color: var(--accent-gold) !important;
+}
+
+/* --- Horizontal Rules --- */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color), var(--accent-gold-soft), var(--border-color), transparent);
+  margin: 2.5em 0;
+}
+
+/* --- Blockquotes --- */
+blockquote {
+  border-left: 3px solid var(--accent-gold) !important;
+  background: var(--bg-card) !important;
+  padding: 1em 1.4em !important;
+  border-radius: 0 6px 6px 0;
+  color: var(--text-secondary) !important;
+  font-style: italic;
+}
+
+/* --- Tables --- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background: var(--bg-card) !important;
+  color: var(--accent-gold) !important;
+  font-family: var(--font-heading) !important;
+  font-weight: 600;
+  border-bottom: 2px solid var(--accent-gold-soft) !important;
+}
+
+td {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+tr:hover td {
+  background: var(--bg-card) !important;
+}
+
+/* --- Lists (inside main content) --- */
+.page__content ul li,
+.page__content ol li {
+  margin-bottom: 0.4em;
+}
+
+.page__content ul li::marker {
+  color: var(--accent-gold);
+}
+
+.page__content ol li::marker {
+  color: var(--accent-blue);
+  font-weight: 700;
+}
+
+/* --- Footer --- */
+.page__footer {
+  background: rgba(6, 10, 20, 0.95) !important;
+  border-top: 1px solid var(--border-color) !important;
+  color: var(--text-muted) !important;
+}
+
+.page__footer a {
+  color: var(--text-muted) !important;
+}
+
+.page__footer a:hover {
+  color: var(--accent-gold) !important;
+}
+
+/* --- Follow Button --- */
+.btn--inverse {
+  background: var(--bg-card) !important;
+  color: var(--text-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn--inverse:hover {
+  background: var(--accent-gold) !important;
+  color: var(--bg-deep) !important;
+  border-color: var(--accent-gold) !important;
+}
+
+/* --- Breadcrumbs --- */
+.breadcrumbs {
+  color: var(--text-muted) !important;
+}
+
+.breadcrumbs a {
+  color: var(--text-muted) !important;
+}
+
+.breadcrumbs a:hover {
+  color: var(--accent-gold) !important;
+}
+
+/* --- Selection highlight --- */
+::selection {
+  background: var(--accent-gold) !important;
+  color: var(--bg-deep) !important;
+}
+
+::-moz-selection {
+  background: var(--accent-gold) !important;
+  color: var(--bg-deep) !important;
+}
+
+/* --- Scrollbar (Webkit) --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+  h1, .page__title {
+    font-size: 1.7em !important;
+  }
+  h2 {
+    font-size: 1.3em !important;
+  }
+  body::before,
+  body::after {
+    /* Simplify starfield on mobile for performance */
+    animation-duration: 200s;
+  }
+}
+
+/* --- Smooth page load animation --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page__content,
+.author__avatar,
+.author__content {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.author__urls-wrapper {
+  animation: fadeInUp 1s ease-out;
+}
+
+/* --- Nuclear glow accent on sidebar dividers --- */
+.sidebar .author__urls::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold-soft), transparent);
+  margin: 0.8em 0;
+}
+
+/* --- Subtle glow on page title --- */
+.page__title {
+  text-shadow: 0 0 30px rgba(212, 168, 67, 0.08);
+}
+</style>
