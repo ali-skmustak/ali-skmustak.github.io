@@ -8,7 +8,8 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-site_theme               : "default"
+#site_theme               : "default"
+minimal_mistakes_skin: "air"
 title                    : "Sk Mustak Ali, Ph.D."
 title_separator          : "-"
 name                     : &name "Sk Mustak Ali"
@@ -26,10 +27,10 @@ author:
   name             : "Sk Mustak Ali"
   pronouns         : # example: "she/her"  
   bio              : "Postdoctoral Research Associate"
-  location         : "East Lansing"
-  employer         : "Facility for Rare Isotope Beams"
+  location         : "College Station"
+  employer         : "Texas A&M University"
   uri              : # URL
-  email            : "none@example.org" 
+  email            : "mustak@tamu.edu" 
 
   # Academic websites
   academia         : # URL
